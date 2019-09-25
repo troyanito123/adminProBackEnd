@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 let appRoutes = require('./routes/app');
 let usuarioRoutes = require('./routes/usuario');
 let loginRoutes = require('./routes/login');
+let hospitalRoutes = require('./routes/hospital');
 
 // Conexion a la base de datos
 mongoose.connect('mongodb://localhost:27017/hospitalDB', {useNewUrlParser: true, useUnifiedTopology: true}, (err, res) =>{
@@ -25,6 +26,7 @@ mongoose.connect('mongodb://localhost:27017/hospitalDB', {useNewUrlParser: true,
 // Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
+app.use('/hospital', hospitalRoutes);
 app.use('/', appRoutes);
 
 // Escuchar peticiones
