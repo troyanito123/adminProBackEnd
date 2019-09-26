@@ -10,7 +10,14 @@ let Medico = require('../models/medico');
 // =========================
 app.get('/', (req, res) =>{
 
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
+
     Medico.find({})
+        .skip(desde)
+        .limit(5)
+        .populate('usuario', 'nombre email')
+        .populate('hospital')
         .exec((err, medicos) => {
             if (err) {
                 return res.status(500).json({
@@ -20,9 +27,12 @@ app.get('/', (req, res) =>{
                 })
             }
 
-            res.status(200).json({
-                ok: true,
-                medicos
+            Medico.count({}, (err, total) => {
+                res.status(200).json({
+                    ok: true,
+                    medicos,
+                    total
+                });
             });
         });
 });
