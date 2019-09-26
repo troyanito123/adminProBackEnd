@@ -16,7 +16,8 @@ let appRoutes = require('./routes/app');
 let usuarioRoutes = require('./routes/usuario');
 let loginRoutes = require('./routes/login');
 let hospitalRoutes = require('./routes/hospital');
-let medicoRoutes = require('./routes/medico');
+let busquedaRoutes = require('./routes/hospital');
+let medicoRoutes = require('./routes/busqueda');
 
 // Conexion a la base de datos
 mongoose.connect('mongodb://localhost:27017/hospitalDB', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err, res) =>{
@@ -29,6 +30,7 @@ app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/hospital', hospitalRoutes);   
 app.use('/medico', medicoRoutes);
+app.use('/busqueda', medicoRoutes);
 app.use('/', appRoutes);
 
 // Escuchar peticiones
